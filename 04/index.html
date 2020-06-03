@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Questao 4</title>
+	</head>
+	<body>
+		<img id="lamp" src="./bulb_off.jpg" value="bulbOff" />
+
+		<script>
+			function trocar(e) {
+				const fieldLamp = e.target;
+				const lightBulbImage = "light_on.jpg";
+				const lampImageOff = "bulb_off.jpg";
+
+				let fieldImageSrc = fieldLamp.src;
+				let fieldValue = fieldLamp.value ? fieldLamp.value : "bulbOff";
+
+				if (fieldValue === "bulbOff") {
+					fieldLamp.src = lightBulbImage;
+					fieldLamp.value = "lightOn";
+				} else {
+					fieldLamp.src = lampImageOff;
+					fieldLamp.value = "bulbOff";
+				}
+			}
+
+			document.getElementById("lamp").addEventListener("click", trocar);
+		</script>
+	</body>
+</html>

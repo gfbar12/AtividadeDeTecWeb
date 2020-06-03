@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Questao 5</title>
+	</head>
+	<body>
+		<input id="cpf" maxlength="11" />
+		<input id="cpfWithMask" maxlength="14" disabled />
+
+		<script>
+			let cpf = document.getElementById("cpf");
+			let cpfWithMask = document.getElementById("cpfWithMask");
+
+			cpf.addEventListener("keypress", (e) => {
+				cpfWithMask.value = cpfMask(e.target.value);
+			});
+
+			function cpfMask(CPF) {
+				CPF = CPF.replace(/\D/g, "");
+				CPF = CPF.replace(/(\d{3})(\d)/, "$1.$2");
+				CPF = CPF.replace(/(\d{3})(\d)/, "$1.$2");
+				CPF = CPF.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+				return CPF;
+			}
+		</script>
+	</body>
+</html>

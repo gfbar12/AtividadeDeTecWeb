@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Questao 7</title>
+	</head>
+
+	<body>
+		<form id="frm">
+			<input id="name" />
+			<input type="number" id="age" />
+			<input type="submit" value="Enviar" />
+		</form>
+
+		<table style="margin-top: 15px;">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Idade</th>
+				</tr>
+			</thead>
+
+			<tbody id="tbody"></tbody>
+
+			<tfoot>
+				<tr>
+					<th scope="row">
+						<input
+							type="button"
+							id="sortNameButton"
+							value="Ordernar por nome"
+						/>
+					</th>
+
+					<th scope="row">
+						<input
+							type="button"
+							id="sortAgeButton"
+							value="Ordernar por idade"
+						/>
+					</th>
+				</tr>
+			</tfoot>
+		</table>
+
+		<script>
+			const frm = document.getElementById("frm");
+			const tbody = document.getElementById("tbody");
+
+			const fieldName = document.getElementById("name");
+			const fieldAge = document.getElementById("age");
+
+			const sortNameButton = document.getElementById("sortNameButton");
+			const sortAgeButton = document.getElementById("sortAgeButton");
+
+			let listInfo = [];
+
+			frm.addEventListener("submit", (e) => {
+				e.preventDefault();
+
+				listInfo.push({ name: fieldName.value, age: fieldAge.value });
+				renderListTable(fieldName.value, fieldAge.value);
+			});
+
+			sortNameButton.addEventListener("click", () => {
+				let newList = listInfo.sort((a, b) => {
+					if (a.name > b.name) {
+						return 1;
+					}
+					if (a.name < b.name) {
+						return -1;
+					}
+
+					return 0;
+				});
+
+				if (newList.length > 0) {
+					tbody.innerHTML = "";
+
+					for (const i in newList) {
+						renderListOrderBy(newList);
+					}
+				}
+			});
+
+			sortAgeButton.addEventListener("click", () => {
+				let newList = listInfo.sort((a, b) => {
+					if (a.age > b.age) {
+						return 1;
+					}
+					if (a.age < b.age) {
+						return -1;
+					}
+
+					return 0;
+				});
+
+				if (newList.length > 0) {
+					renderListOrderBy(newList);
+				}
+			});
+
+			function renderListTable(name, age) {
+				tbody.innerHTML += `
+			         <tr>
+			           <td>${name}</td>
+			           <td>${age}</td>
+			         </tr>
+			       `;
+			}
+
+			function renderListOrderBy(newList) {
+				tbody.innerHTML = "";
+
+				for (const i in newList) {
+					const list = newList[i];
+
+					tbody.innerHTML += ` 
+            <tr>
+              <td>${list.name}</td>
+              <td>${list.age}</td>
+            </tr>
+			    `;
+				}
+			}
+		</script>
+	</body>
+</html>

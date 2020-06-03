@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Questao 9</title>
+	</head>
+	<body>
+		<input placeholder="Nome:" />
+		<input maxlength="11" placeholder="Cpf:" />
+		<input placeholder="Produto:" />
+		<input placeholder="Descrição:" />
+		<input type="file" placeholder="Foto do Produto:" />
+
+		<div style="margin-top: 20px;">
+			Categoria:
+			<select id="listCategories" style="width: 155px;"></select>
+
+			<form id="frm" style="margin-top: 15px;">
+				<input id="nameCategorie" placeholder="Nome da categoria" />
+
+				<br />
+
+				<input type="submit" value="Adicionar categoria" />
+			</form>
+		</div>
+
+		<script>
+			const listCategories = ["A", "B", "C"];
+			const frm = document.getElementById("frm");
+			const fielNameCategorie = document.getElementById("nameCategorie");
+
+			frm.addEventListener("submit", (e) => {
+				e.preventDefault();
+
+				listCategories.push(fielNameCategorie.value);
+				mountListCategories();
+			});
+
+			function mountListCategories() {
+				const fielListCategories = document.getElementById("listCategories");
+
+				fielListCategories.innerHTML = "";
+				listCategories.forEach((item) => {
+					const option = new Option(item, item);
+
+					fielListCategories.add(option);
+				});
+			}
+
+			mountListCategories();
+		</script>
+	</body>
+</html>

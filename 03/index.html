@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Questao 3</title>
+	</head>
+	<body>
+		<form id="frm">
+			<label>Digite aqui:</label>
+			<input type="text" id="field" />
+			<input type="submit" value="Enviar" />
+		</form>
+
+		<script>
+			const frm = document.getElementById("frm");
+
+			let field = document.getElementById("field");
+
+			frm.addEventListener("submit", (e) => {
+				e.preventDefault();
+				const tamanho = field.value;
+
+				alert("Você digitou " + tamanho.length + " caracteres");
+			});
+		</script>
+	</body>
+</html>
